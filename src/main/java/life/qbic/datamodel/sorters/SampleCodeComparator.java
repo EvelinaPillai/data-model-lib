@@ -51,9 +51,9 @@ public class SampleCodeComparator implements Comparator<IBarcodeBean> {
     try {
       // compares sample codes by projects, ending letters (999A --> 001B) and numbers (001A -->
       // 002A)
-      int projCompare = c1.substring(0, 5).compareTo(c2.substring(0, 5));
-      int numCompare = c1.substring(5, 8).compareTo(c2.substring(5, 8));
-      int letterCompare = c1.substring(8, 9).compareTo(c2.substring(8, 9));
+      int projCompare = c1.substring(0, 15).compareTo(c2.substring(0, 15)); //hengam
+      int numCompare = c1.substring(15, 18).compareTo(c2.substring(15, 18));
+      int letterCompare = c1.substring(18, 19).compareTo(c2.substring(18, 19));
       if (projCompare != 0)
         return projCompare;
       else {

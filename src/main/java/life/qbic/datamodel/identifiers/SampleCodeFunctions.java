@@ -26,7 +26,8 @@ public class SampleCodeFunctions {
    * @return true if String is a QBiC barcode, false if not
    */
   public static boolean isQbicBarcode(String code) {
-    String pattern = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
+    //String pattern = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
+    String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}[0-9]{3}[A-X0-9]{2}";
     return code.matches(pattern);
   }
 
@@ -37,7 +38,7 @@ public class SampleCodeFunctions {
     } catch (ArrayIndexOutOfBoundsException e) {
       return false;
     }
-    return isQbicBarcode(code);
+    return isQbicBarcode(code);//isQbicBarcode(code);
   }
 
   public static int compareSampleCodes(String c1, String c2) {
@@ -104,15 +105,25 @@ public class SampleCodeFunctions {
    * @return a new sample code
    */
   public static String incrementSampleCode(String code) {
-    String old = code.substring(5, 8);
+    //String old = code.substring(5, 8);
+	System.out.println("code0 " +code);
+	String old = code.substring(15, 18);
+	System.out.println("code1 " +code);
+    System.out.println("old " +old);
     String num = "";
     int newNum = Integer.parseInt(old) + 1;
-    char letter = code.charAt(8);
+    System.out.println("newNum "+ newNum);
+    
+    //char letter = code.charAt(8);
+    char letter = code.charAt(18);
     if (newNum > 999) {
       num = "001" + incrementUppercase(letter);
     } else
-      num = createCountString(newNum, 3) + letter;
-    String res = code.substring(0, 5) + num;
+      num = createCountString(newNum, 3) + letter; //TODO check if 3 ?
+    //String res = code.substring(0, 5) + num;
+      String res = code.substring(0, 15) + num;
+      System.out.println("Res " + res);
+      
     return res + checksum(res);
   }
 
@@ -155,10 +166,12 @@ public class SampleCodeFunctions {
    */
   public static char mapToChar(int i) {
     i += 48;
-    if (i > 57) {
+    if (i > 57 && i<91) {
       i += 7;
     }
+    System.out.println("maptochar"+i);
     return (char) i;
+    
   }
 
   public static float getPercentageStep(int max) {
@@ -180,6 +193,7 @@ public class SampleCodeFunctions {
       sum += (((int) s.charAt(idx))) * i;
       i += 1;
     }
+    System.out.println("sum"+sum);
     return mapToChar(sum % 34);
   }
 
@@ -205,10 +219,10 @@ public class SampleCodeFunctions {
    */
   public static String getBarcodeRange(List<String> ids) {
     String head = getProjectPrefix(ids.get(0));
-    String min = ids.get(0).substring(5, 8);
+    String min = ids.get(0).substring(15, 18); // (15, 18) original 5,8 hengam
     String max = min;
     for (String id : ids) {
-      String num = id.substring(5, 8);
+      String num = id.substring(15, 18); //(15, 18) hengam
       if (num.compareTo(min) < 0)
         min = num;
       if (num.compareTo(max) > 0)
@@ -226,8 +240,20 @@ public class SampleCodeFunctions {
   public static String getProjectPrefix(String sample) {
     boolean numeric = StringUtils.isNumeric("" + sample.charAt(4));
     if (numeric)
-      return sample.substring(0, 4);
+      return sample.substring(0, 15); //hengam from 4 to 15
     else
-      return sample.substring(0, 5);
+      return sample.substring(0, 15); // from 5 to 15 hengam
   }
+  
+  /**
+   * Checks if a String fits the CFH Code pattern
+   * 
+   * @param code A String that may be a barcode
+   * @return true if String is a QBiC barcode, false if not
+   */
+  public static boolean isCFHcode(String code) {
+    String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}[0-9]{3}[A-X0-9]{2}";
+    return code.matches(pattern);
+  }
+
 }

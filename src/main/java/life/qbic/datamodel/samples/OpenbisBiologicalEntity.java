@@ -31,6 +31,7 @@ public class OpenbisBiologicalEntity extends AOpenbisSample {
 
   private String ncbiOrganism;
   private String speciesInfo;
+   
 
   /**
    * Create a new Biological Entity
@@ -46,12 +47,12 @@ public class OpenbisBiologicalEntity extends AOpenbisSample {
    */
   public OpenbisBiologicalEntity(String openbisName, String space, String experiment,
       String secondaryName, String additionalNotes, List<Property> factors, String ncbiOrganism,
-      String speciesInfo, String extID) {
+      String speciesInfo, String extID ) {
     super(openbisName, space, experiment, secondaryName, additionalNotes, factors, "", extID,
         "Q_BIOLOGICAL_ENTITY");
     this.ncbiOrganism = ncbiOrganism;
     this.speciesInfo = speciesInfo;
-  }
+   }
 
   public Map<String, String> getValueMap() {
     Map<String, String> res = super.getValueMap();
