@@ -63,6 +63,8 @@ public class OpenbisBiologicalSample extends AOpenbisSample {
     this.tissueDetailed = tissueDetailed;
   }
 
+  
+  
   public Map<String, String> getValueMap() {
     Map<String, String> res = super.getValueMap();
     res.put("Q_PRIMARY_TISSUE", primaryTissue);
