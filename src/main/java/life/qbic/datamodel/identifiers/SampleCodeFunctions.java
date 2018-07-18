@@ -249,7 +249,7 @@ public class SampleCodeFunctions {
    * Checks if a String fits the CFH Code pattern
    * 
    * @param code A String that may be a barcode
-   * @return true if String is a QBiC barcode, false if not
+   * @return true if String is a CFH barcode, false if not
    */
   public static boolean isCFHcode(String code) {
     String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}[0-9]{3}[A-X0-9]{2}";
