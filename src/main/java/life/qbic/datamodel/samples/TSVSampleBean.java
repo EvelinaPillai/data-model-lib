@@ -45,7 +45,7 @@ public class TSVSampleBean implements ISampleBean {
   }
 
   public boolean hasParents() {
-    return parentIDs.isEmpty();
+    return !parentIDs.isEmpty();
   }
 
   public List<String> getParentIDs() {
@@ -153,10 +153,23 @@ public class TSVSampleBean implements ISampleBean {
     metadata.put(key, val);
   }
 
+//  @Override
+//  public ISampleBean copy() {
+//    TSVSampleBean res = new TSVSampleBean(code, experiment, project, space, sampleType,
+//        secondaryName, parentIDs, new HashMap<String, Object>(metadata));
+//    return res;
+//  }
   @Override
   public ISampleBean copy() {
     TSVSampleBean res = new TSVSampleBean(code, experiment, project, space, sampleType,
-        secondaryName, parentIDs, new HashMap<String, Object>(metadata));
+        secondaryName, parentIDs, copyMetadata(metadata));
     return res;
   }
+
+  private Map<String, Object> copyMetadata(Map<String, Object> metadata) {
+    Map<String, Object> res = new HashMap<String, Object>();
+    for (String key : metadata.keySet())
+      res.put(key, metadata.get(key));
+    return res;
+}
 }

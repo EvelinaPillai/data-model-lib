@@ -193,9 +193,10 @@ public class SampleCodeFunctions {
       sum += (((int) s.charAt(idx))) * i;
       i += 1;
     }
-    System.out.println("sum"+sum);
     return mapToChar(sum % 34);
   }
+  
+
 
   /**
    * Parses a whole String list to integers and returns them in another list.
