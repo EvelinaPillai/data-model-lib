@@ -27,7 +27,7 @@ public class SampleCodeFunctions {
    */
   public static boolean isQbicBarcode(String code) {
     //String pattern = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
-    String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}[0-9]{3}[A-X0-9]{2}";
+    String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}-[0-9]{3}[A-X0-9]{2}";
     return code.matches(pattern);
   }
 
@@ -41,6 +41,7 @@ public class SampleCodeFunctions {
     return isQbicBarcode(code);//isQbicBarcode(code);
   }
 
+  //TODO THIS IS WRONG FOR CFH CODE !!!!
   public static int compareSampleCodes(String c1, String c2) {
     if (!c1.startsWith("Q") || c1.contains("ENTITY") || !c2.startsWith("Q")
         || c2.contains("ENTITY"))
@@ -48,9 +49,9 @@ public class SampleCodeFunctions {
     try {
       // compares sample codes by projects, ending letters (999A --> 001B) and numbers (001A -->
       // 002A)
-      int projCompare = c1.substring(0, 5).compareTo(c2.substring(0, 5));
-      int numCompare = c1.substring(5, 8).compareTo(c2.substring(5, 8));
-      int letterCompare = c1.substring(8, 9).compareTo(c2.substring(8, 9));
+      int projCompare = c1.substring(0, 16).compareTo(c2.substring(0, 16));
+      int numCompare = c1.substring(16, 19).compareTo(c2.substring(16, 19));
+      int letterCompare = c1.substring(19, 20).compareTo(c2.substring(19, 20));
       if (projCompare != 0)
         return projCompare;
       else {
@@ -106,22 +107,21 @@ public class SampleCodeFunctions {
    */
   public static String incrementSampleCode(String code) {
     //String old = code.substring(5, 8);
-	System.out.println("code0 " +code);
-	String old = code.substring(15, 18);
-	System.out.println("code1 " +code);
-    System.out.println("old " +old);
+	String old = code.substring(16, 19);
+	System.out.println("code1 " + code);
+    System.out.println("old " + old);
     String num = "";
     int newNum = Integer.parseInt(old) + 1;
     System.out.println("newNum "+ newNum);
     
     //char letter = code.charAt(8);
-    char letter = code.charAt(18);
+    char letter = code.charAt(19);
     if (newNum > 999) {
       num = "001" + incrementUppercase(letter);
     } else
       num = createCountString(newNum, 3) + letter; //TODO check if 3 ?
     //String res = code.substring(0, 5) + num;
-      String res = code.substring(0, 15) + num;
+      String res = code.substring(0, 16)  + num;
       System.out.println("Res " + res);
       
     return res + checksum(res);
@@ -253,7 +253,7 @@ public class SampleCodeFunctions {
    * @return true if String is a CFH barcode, false if not
    */
   public static boolean isCFHcode(String code) {
-    String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}[0-9]{3}[A-X0-9]{2}";
+    String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}-[0-9]{3}[A-X0-9]{2}";
     return code.matches(pattern);
   }
 
