@@ -29,6 +29,7 @@ import life.qbic.xml.properties.Property;
 public class OpenbisCfhElementSample extends AOpenbisSample {
 
   String Q_CFH_ELEMENTS;
+  String Q_SAMPLE_TYPE;
   private String digestion;
   private String elements;
   private String device;
@@ -45,12 +46,13 @@ public class OpenbisCfhElementSample extends AOpenbisSample {
    * @param parent Extract parent of this sample
    */
   public OpenbisCfhElementSample(String openbisName, String space, String experiment,
-	      String secondaryName, String additionalNotes,List<Property> factors, String digestion , String elements , 
+	      String secondaryName, String additionalNotes,List<Property> factors, String sampleType, String digestion , String elements , 
 	      String device , String parent, String extID) {
-	    super(openbisName, space, experiment, secondaryName, additionalNotes, factors ,parent , extID, "Q_CFH_ELEMENTS");
+	    super(openbisName, space, experiment, secondaryName, additionalNotes, factors , parent , extID, "Q_CFH_ELEMENTS");
 	    this.digestion = digestion;
 	    this.elements = elements;
 	    this.device = device;
+	    this.Q_SAMPLE_TYPE = sampleType;
   }
 
 //  public OpenbisCfhElementSample(String openbisName, String space, String experiment,
@@ -63,10 +65,11 @@ public class OpenbisCfhElementSample extends AOpenbisSample {
 
   public Map<String, String> getValueMap() {
     Map<String, String> res = super.getValueMap();
-    res.put("Q_CFH_ELEMENTS", Q_CFH_ELEMENTS); //TODO delete because not needed
+    res.put("Q_CFH_ELEMENTS", Q_CFH_ELEMENTS); 
     res.put("Q_CFH_DIGESTION", digestion);
     res.put("Q_ELEMENT_DESC", elements);
     res.put("Q_CFH_DEVICES", device);
+    res.put("Q_SAMPLE_TYPE", Q_SAMPLE_TYPE);
     
     return res;
   }

@@ -45,7 +45,7 @@ public class SampleCodeComparator implements Comparator<IBarcodeBean> {
   public int compare(IBarcodeBean o1, IBarcodeBean o2) {
     String c1 = o1.getCode();
     String c2 = o2.getCode();
-    if (!c1.startsWith("Q") || c1.contains("ENTITY") || !c2.startsWith("Q")
+    if (!c1.startsWith("2") || c1.contains("ENTITY") || !c2.startsWith("2")
         || c2.contains("ENTITY"))
       return o1.getCode().compareTo(o2.getCode());
     try {

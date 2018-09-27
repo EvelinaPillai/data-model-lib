@@ -27,7 +27,7 @@ public class SampleCodeFunctions {
    */
   public static boolean isQbicBarcode(String code) {
     //String pattern = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
-    String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}-[0-9]{3}[A-X0-9]{2}";
+    String pattern = "20[0-9]{2}-[1-4]-[0-9]{4}-[0-9]{3}-[0-9]{3}[A-X0-9]{2}";
     return code.matches(pattern);
   }
 
@@ -246,15 +246,4 @@ public class SampleCodeFunctions {
       return sample.substring(0, 15); // from 5 to 15 hengam
   }
   
-  /**
-   * Checks if a String fits the CFH Code pattern
-   * 
-   * @param code A String that may be a barcode
-   * @return true if String is a CFH barcode, false if not
-   */
-  public static boolean isCFHcode(String code) {
-    String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}-[0-9]{3}[A-X0-9]{2}";
-    return code.matches(pattern);
-  }
-
 }
