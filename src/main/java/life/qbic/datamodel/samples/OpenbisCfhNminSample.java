@@ -21,7 +21,7 @@ import java.util.Map;
 import life.qbic.xml.properties.Property;
 
 /**
- * Class representing a sample created in a sample preparation that will be used to measure data
+ * Class representing a sample created in a sample preparation (in this case Nmin) that will be used to measure data
  * 
  * @author Andreas Friedrich
  *
@@ -29,38 +29,47 @@ import life.qbic.xml.properties.Property;
 public class OpenbisCfhNminSample extends AOpenbisSample {
 
   String Q_CFH_NMINS;
+  String Q_SAMPLE_TYPE;
   private String depth;
   private String bulk_density;
   private String device;
 
-  /**
-   * Create a new Test Sample
-   * 
-   * @param openbisName Code of the sample
-   * @param experiment Experiment the sample is attached to
-   * @param secondaryName Secondary Name of the sample (e.g. humanly readable identifier)
-   * @param additionalNotes Free text notes for the sample
-   * @param factors A list of conditions of this sample
-   * @param sampleType Measurement type of this sample (e.g. protein)
-   * @param parent Extract parent of this sample
-   */
+
+ /**
+  * Create a new Nmin Sample
+  * 
+  * @param openbisName Code of the sample
+  * @param space
+  * @param experiment Experiment the sample is attached to
+  * @param secondaryName Secondary Name of the sample (e.g. humanly readable identifier)
+  * @param additionalNotes Free text notes for the sample
+  * @param factors A list of conditions of this sample
+  * @param sampleType Measurement type of this sample (e.g. protein)
+  * @param depth Depth the soil sample comes from 
+  * @param bulk_density Factor that has to be considered in the concentration due to the depth 
+  * @param device //TODO maybe no device needed
+  * @param parent Extract parent of this sample
+  * @param extID
+  */
   public OpenbisCfhNminSample(String openbisName, String space, String experiment,
-	      String secondaryName, String additionalNotes,List<Property> factors, String depth , String bulk_density , 
+	      String secondaryName, String additionalNotes,List<Property> factors, String sampleType, String depth , String bulk_density , 
 	      String device , String parent, String extID) {
 	    super(openbisName, space, experiment, secondaryName, additionalNotes, factors ,parent , extID, "Q_CFH_NMINS");
 	    this.depth = depth;
 	    this.bulk_density = bulk_density;
 	    this.device = device;
+	    this.Q_SAMPLE_TYPE = sampleType;
   }
 
 
 
   public Map<String, String> getValueMap() {
     Map<String, String> res = super.getValueMap();
-    res.put("Q_CFH_NMINS", Q_CFH_NMINS); //TODO delete because not needed
+    res.put("Q_CFH_NMINS", Q_CFH_NMINS);
     res.put("Q_CFH_NMIN_DEPTH", depth);
     res.put("Q_CFH_NMIN_DENSITY", bulk_density);
-   
+    res.put("Q_SAMPLE_TYPE", Q_SAMPLE_TYPE);
+     
     
     return res;
   }
