@@ -33,6 +33,7 @@ public class OpenbisCfhNminSample extends AOpenbisSample {
   private String depth;
   private String bulk_density;
   private String device;
+  private String selection;
 
 
  /**
@@ -52,11 +53,12 @@ public class OpenbisCfhNminSample extends AOpenbisSample {
   * @param extID
   */
   public OpenbisCfhNminSample(String openbisName, String space, String experiment,
-	      String secondaryName, String additionalNotes,List<Property> factors, String sampleType, String depth , String bulk_density , 
+	      String secondaryName, String additionalNotes,List<Property> factors, String sampleType, String depth , String bulk_density , String selection, 
 	      String device , String parent, String extID) {
 	    super(openbisName, space, experiment, secondaryName, additionalNotes, factors ,parent , extID, "Q_CFH_NMINS");
 	    this.depth = depth;
 	    this.bulk_density = bulk_density;
+	    this.selection = selection;
 	    this.device = device;
 	    this.Q_SAMPLE_TYPE = sampleType;
   }
@@ -68,6 +70,7 @@ public class OpenbisCfhNminSample extends AOpenbisSample {
     res.put("Q_CFH_NMINS", Q_CFH_NMINS);
     res.put("Q_CFH_NMIN_DEPTH", depth);
     res.put("Q_CFH_NMIN_DENSITY", bulk_density);
+    res.put("Q_CFH_NITRATE", selection);
     res.put("Q_SAMPLE_TYPE", Q_SAMPLE_TYPE);
      
     
