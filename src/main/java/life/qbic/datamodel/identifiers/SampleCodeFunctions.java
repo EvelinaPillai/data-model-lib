@@ -108,11 +108,8 @@ public class SampleCodeFunctions {
   public static String incrementSampleCode(String code) {
     //String old = code.substring(5, 8);
 	String old = code.substring(16, 19);
-	System.out.println("code1 " + code);
-    System.out.println("old " + old);
     String num = "";
     int newNum = Integer.parseInt(old) + 1;
-    System.out.println("newNum "+ newNum);
     
     //char letter = code.charAt(8);
     char letter = code.charAt(19);
@@ -122,8 +119,7 @@ public class SampleCodeFunctions {
       num = createCountString(newNum, 3) + letter; //TODO check if 3 ?
     //String res = code.substring(0, 5) + num;
       String res = code.substring(0, 16)  + num;
-      System.out.println("Res " + res);
-      
+            
     return res + checksum(res);
   }
 
@@ -169,7 +165,6 @@ public class SampleCodeFunctions {
     if (i > 57 && i<91) {
       i += 7;
     }
-    System.out.println("maptochar"+i);
     return (char) i;
     
   }
