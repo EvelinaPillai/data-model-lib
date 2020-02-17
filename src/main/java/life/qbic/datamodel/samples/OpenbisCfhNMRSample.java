@@ -27,6 +27,8 @@ import life.qbic.xml.properties.Property;
  *
  */
 public class OpenbisCfhNMRSample extends AOpenbisSample {
+	
+	String Q_SAMPLE_TYPE;
 
 	/**
 	 * Create a new NMR Sample
@@ -42,8 +44,9 @@ public class OpenbisCfhNMRSample extends AOpenbisSample {
 	 * @param extID
 	 */
 	public OpenbisCfhNMRSample(String openbisName, String space, String experiment, String secondaryName,
-			String additionalNotes, List<Property> factors, String parent, String extID) {
+			String additionalNotes, List<Property> factors, String sampleType, String parent, String extID) {
 		super(openbisName, space, experiment, secondaryName, additionalNotes, factors, parent, extID, "Q_CFH_NMR_RUN");
+		this.Q_SAMPLE_TYPE = sampleType;
 
 	}
 
@@ -54,6 +57,8 @@ public class OpenbisCfhNMRSample extends AOpenbisSample {
 
 	public Map<String, String> getValueMap() {
 		Map<String, String> res = super.getValueMap();
+		res.put("Q_SAMPLE_TYPE", Q_SAMPLE_TYPE);
+
 		return res;
 	}
 }
