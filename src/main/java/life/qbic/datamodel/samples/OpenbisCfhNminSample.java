@@ -23,7 +23,6 @@ import life.qbic.xml.properties.Property;
 /**
  * Class representing a sample created in a sample preparation (in this case Nmin) that will be used to measure data
  * 
- * @author Andreas Friedrich
  *
  */
 public class OpenbisCfhNminSample extends AOpenbisSample {
